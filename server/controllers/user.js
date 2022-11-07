@@ -6,7 +6,7 @@ const JWT_SECRET = 'Bup3hiyOBEZyNmjk-6H-EnFtOoPDMeH2PujdxErh_LvnQSChOt63UBDojI38
 
 const router = express.Router();
 
-export const userLogin = async(req, res) => {
+export const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
         const userExist = await User.findOne({ email });
@@ -14,11 +14,11 @@ export const userLogin = async(req, res) => {
         if (userExist) {
             const checkPassword = await bcrypt.compare(password, userExist.password);
 
-            const userData = {...userExist.toObject() }
+            const userData = { ...userExist.toObject() }
 
             if (checkPassword) {
                 const token = jwt.sign({ id: userData._id }, JWT_SECRET);
-                
+
                 delete userData.password;
 
 
@@ -37,7 +37,7 @@ export const userLogin = async(req, res) => {
     }
 }
 
-export const userSignup = async(req, res) => {
+export const userSignup = async (req, res) => {
 
     try {
         const { firstName, lastName, email, mobileNumber, password } = req.body;
@@ -54,7 +54,7 @@ export const userSignup = async(req, res) => {
 
         await newUser.save();
         // console.log(newUser);
-        const userData = {...newUser.toObject() }
+        const userData = { ...newUser.toObject() }
         // console.log(userData);
         const token = jwt.sign({ id: userData._id }, JWT_SECRET);
         // console.log(token);
@@ -66,7 +66,7 @@ export const userSignup = async(req, res) => {
     }
 }
 
-export const getUser = async(req, res) => {
+export const getUser = async (req, res) => {
 
     try {
         const _id = req.user;
@@ -76,7 +76,7 @@ export const getUser = async(req, res) => {
             res.status(400).json({ message: 'User does not exist.', success: false });
         }
 
-        const userData = userExist && {...userExist.toObject() }
+        const userData = userExist && { ...userExist.toObject() }
 
         delete userData.password;
 

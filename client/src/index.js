@@ -17,9 +17,7 @@ const store = configureStore(
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
-
-
-
+      
   ReactDOM.render(
     <Provider store={store}>
       <App />

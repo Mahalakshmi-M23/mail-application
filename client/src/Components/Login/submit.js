@@ -5,7 +5,7 @@ const submit = async(values, dispatch, props) => {
     try {
         const { history } = props;
         const { data } = await api.userLogin(values);
-        console.log(data )
+        // console.log(data )
         if (data.success) {
             localStorage.setItem('auth-token', JSON.stringify(data.token))
             dispatch(getUser(data.data))

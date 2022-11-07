@@ -3,9 +3,9 @@ import * as api from '../../api/index.js';
 
 const submit = async (values, dispatch, props) => {
     try {
-        console.log(values);
+        // console.log(values);
         const { data } = await api.userSignup(values);
-        console.log(data);
+        // console.log(data);
         const { history } = props;
 
         if (data.success) {

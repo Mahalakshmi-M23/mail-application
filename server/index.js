@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; //ODM
 import cors from 'cors';
 import dotenv from 'dotenv'
 import http from 'http';
@@ -11,7 +11,7 @@ import mail from './routes/mail.js';
 dotenv.config({ path: '../.env' })
 const app = express();
 
-app.use(cors());
+app.use(cors()); //configure the web API
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
 

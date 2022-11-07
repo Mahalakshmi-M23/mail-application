@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import {
     getAllMails, updateMail, deleteMail
 } from '../../actions/mail';
-// import { getUserData, userLogout } from '../../actions/user';
 import './Dashboard.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faStar, faStarOfDavid, faInbox, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
@@ -29,7 +28,7 @@ let Dashboard = (props) => {
 
     let mailList = useSelector(state => state.mail.mailList);
 
-    console.log(mailList && mailList.filter(mail => mail.status == "send"))
+    // console.log(mailList && mailList.filter(mail => mail.status == "send"))
 
     const user = useSelector(state => state.user.user);
 
@@ -45,13 +44,13 @@ let Dashboard = (props) => {
 
 
     const handleStatusChange = (mailId, starredStatus, deleteStatus) => {
-        console.log('Called')
+        // console.log('Called')
         const data = {
             mailId,
             starredStatus,
             deleteStatus
         };
-        console.log(data);
+        // console.log(data);
         dispatch(updateMail(data, history));
         dispatch(getUserData(history))
         dispatch(getAllMails(history));
@@ -63,10 +62,6 @@ let Dashboard = (props) => {
         dispatch(getAllMails(history));
     };
     const handleModal = () => setShow(true);
-
-
-    
-
 
     const handleDelete = () => {
         const data = {
@@ -80,9 +75,9 @@ let Dashboard = (props) => {
     }
 
     const handleMenuStatus = (status) => {
-        if(status === 'Trash'){
+        if (status === 'Trash') {
             dispatch(getAllMails(history));
-            
+
         }
         setStatus(status)
     };
@@ -109,7 +104,7 @@ let Dashboard = (props) => {
         mailList = mailList.filter(mail => mail.deleteStatus === true && mail.userId === userId);
     }
 
-     console.log(mailList);
+    //  console.log(mailList);
     return (
         <div>
 
@@ -197,18 +192,18 @@ let Dashboard = (props) => {
 
                                 </ Row>
                             </ Container>
-                            
+
                         </div>
-                        
+
                     )
                 })
             }
 
-<div className='logout'>
-                        <Link to={'#'} className='link-clr' onClick={() => handleLogout()} >
-                            <h4>Logout</h4>
-                        </Link>
-                    </div>
+            <div className='logout'>
+                <Link to={'#'} className='link-clr' onClick={() => handleLogout()} >
+                    <h4>Logout</h4>
+                </Link>
+            </div>
         </div>
     )
 

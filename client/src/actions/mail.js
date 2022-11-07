@@ -2,11 +2,11 @@ import { GET_ALL_MAILS, GET_MAIL, ADD_MAIL, UPDATE_MAIL_STATUS, DELETE_ALL_MAILS
 import * as api from '../api/index.js';
 import { toast } from 'react-toastify';
 
-export const getAllMails = (history) => async(dispatch) => {
+export const getAllMails = (history) => async (dispatch) => {
     try {
         const token = localStorage.getItem('auth-token');
-        console.log(token)
-        if(!token) {
+        // console.log(token)
+        if (!token) {
             history.push('/')
             return false;
         }
@@ -23,14 +23,14 @@ export const getAllMails = (history) => async(dispatch) => {
 
 }
 
-export const getMail = (history, id) => async(dispatch) => {
+export const getMail = (history, id) => async (dispatch) => {
     try {
         const token = localStorage.getItem('auth-token');
-        if(!token) {
+        if (!token) {
             history.push('/')
             return false;
         }
-        console.log(id);
+        // console.log(id);
         const { data } = await api.getMail(token, id);
 
         dispatch({
@@ -46,7 +46,7 @@ export const getMail = (history, id) => async(dispatch) => {
 export const addMail = (values, history) => async (dispatch) => {
     try {
         const token = localStorage.getItem('auth-token');
-        if(!token) {
+        if (!token) {
             history.push('/')
             return false;
         }
@@ -64,13 +64,13 @@ export const addMail = (values, history) => async (dispatch) => {
 export const updateMail = (values, history) => async (dispatch) => {
     try {
         const token = localStorage.getItem('auth-token');
-        if(!token) {
+        if (!token) {
             history.push('/')
             return false;
         }
         const data = await api.updateMail(values);
-        
-        console.log(data);
+
+        // console.log(data);
         dispatch({
             type: UPDATE_MAIL_STATUS,
             payload: data.data
@@ -83,11 +83,11 @@ export const updateMail = (values, history) => async (dispatch) => {
 export const deleteMail = (values, history) => async (dispatch) => {
     try {
         const token = localStorage.getItem('auth-token');
-        if(!token) {
+        if (!token) {
             history.push('/')
             return false;
         }
-        console.log(values);
+        // console.log(values);
         const { data } = await api.deleteMail(values);
         toast('Deleted Successfully!')
         dispatch({
