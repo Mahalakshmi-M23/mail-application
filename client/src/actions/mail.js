@@ -55,8 +55,10 @@ export const addMail = (values, history) => async (dispatch) => {
             type: ADD_MAIL,
             payload: data.data
         });
+        dispatch(getAllMails(history));
         toast("Message sent")
     } catch (error) {
+        toast('Something went wrong..')
         console.log(error.message);
     }
 }

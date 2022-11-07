@@ -17,18 +17,16 @@ let Dashboard = (props) => {
     const { history } = props;
     const [show, setShow] = useState(false);
     const [status, setStatus] = useState('Inbox');
-
+    console.log(show);
 
     useEffect(() => {
         // console.log('inside effect')
         dispatch(getUserData(history))
         dispatch(getAllMails(history))
-    }, []);
-
+    }, [show]);
 
     let mailList = useSelector(state => state.mail.mailList);
 
-    // console.log(mailList && mailList.filter(mail => mail.status == "send"))
 
     const user = useSelector(state => state.user.user);
 
@@ -42,15 +40,12 @@ let Dashboard = (props) => {
     }
 
 
-
     const handleStatusChange = (mailId, starredStatus, deleteStatus) => {
-        // console.log('Called')
         const data = {
             mailId,
             starredStatus,
             deleteStatus
         };
-        // console.log(data);
         dispatch(updateMail(data, history));
         dispatch(getUserData(history))
         dispatch(getAllMails(history));
@@ -59,8 +54,9 @@ let Dashboard = (props) => {
 
     const handleClose = () => {
         setShow(false);
-        dispatch(getAllMails(history));
     };
+
+
     const handleModal = () => setShow(true);
 
     const handleDelete = () => {
@@ -77,7 +73,6 @@ let Dashboard = (props) => {
     const handleMenuStatus = (status) => {
         if (status === 'Trash') {
             dispatch(getAllMails(history));
-
         }
         setStatus(status)
     };
@@ -105,6 +100,7 @@ let Dashboard = (props) => {
     }
 
     console.log(mailList);
+    console.log(show);
     return (
         <div>
 
