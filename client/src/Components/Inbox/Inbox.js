@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import React, { useEffect} from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-    getAllMails, getMail, addMail, updateMail, deleteMail
+    getMail
 } from '../../actions/mail';
 import { getUserData, userLogout } from '../../actions/user';
 import './Inbox.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faArrowLeft, faStarOfDavid } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 let Inbox = (props) => {
     const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import {
 } from '../../actions/mail';
 import './Dashboard.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faStar, faStarOfDavid, faInbox, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faStar, faStarOfDavid, faInbox, faPaperPlane, faUser } from "@fortawesome/free-solid-svg-icons";
 import Compose from '../Compose/Compose';
 import { getUserData, userLogout } from '../../actions/user';
 
@@ -104,7 +104,7 @@ let Dashboard = (props) => {
         mailList = mailList.filter(mail => mail.deleteStatus === true && mail.userId === userId);
     }
 
-    //  console.log(mailList);
+    console.log(mailList);
     return (
         <div>
 
@@ -164,30 +164,26 @@ let Dashboard = (props) => {
 
                                     </Col>
                                     <Col>
-                                        <Row>
-                                            <Col xs={12} sm={12} md={12} lg={12}>
-                                                <Col>
-                                                    <Link to={'/mail/' + mail._id} className='link-clr' >
-                                                        <Col>{mail.subject}</Col>
-                                                        <Col>{mail.message}</Col>
+                                        <Col xs={12} sm={12} md={12} lg={12}>
+
+                                            <Link to={'/mail/' + mail._id} className='link-clr' >
+                                                <Col>{mail.subject}</Col>
+                                                <Col>{mail.message}</Col>
+                                            </Link>
+
+
+                                            <Col>
+                                                {
+                                                    status !== 'Trash' &&
+                                                    <Link to={'#'} className='link-clr'>
+                                                        {
+                                                            mail && mail._id && mail.deleteStatus === false &&
+                                                            <FontAwesomeIcon icon={faTrash} size="sm" onClick={() => handleStatusChange(mail._id, mail.starredStatus, true)} />
+                                                        }
                                                     </Link>
-                                                </Col>
-
-                                                <Col>
-                                                    {
-                                                        status !== 'Trash' &&
-                                                        <Link to={'#'} className='link-clr'>
-                                                            {
-                                                                mail && mail._id && mail.deleteStatus === false &&
-                                                                <FontAwesomeIcon icon={faTrash} size="sm" onClick={() => handleStatusChange(mail._id, mail.starredStatus, true)} />
-                                                            }
-                                                        </Link>
-                                                    }
-                                                </Col>
+                                                }
                                             </Col>
-
-
-                                        </Row>
+                                        </Col>
                                     </Col>
 
                                 </ Row>
@@ -201,7 +197,16 @@ let Dashboard = (props) => {
 
             <div className='logout'>
                 <Link to={'#'} className='link-clr' onClick={() => handleLogout()} >
-                    <h4>Logout</h4>
+                    <Row>
+                        <Col xs={0} sm={1} md={1} lg={0}>
+                            <FontAwesomeIcon icon={faUser} size="sm" />
+                        </Col>
+                        <Col xs={0} sm={1} md={1} lg={0}>
+                            <h4>Logout</h4>
+                        </Col>
+
+                    </Row>
+
                 </Link>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Row, Col, FormGroup, FormControl, FormLabel, Form, Button } from 'react-bootstrap';
 import './Login.css';
 import { Link } from 'react-router-dom';
