@@ -164,7 +164,7 @@ let Dashboard = (props) => {
                                         <Link to={'/mail/' + mail._id} className='link-clr' >
                                             <p>{mail.subject}</p>
                                         </Link>
-                                        <p>{mail.message}</p>
+                                        <p className='max-lines'>{mail.message}</p>
                                     </div>
 
                                     <div className='mailBtn'>
