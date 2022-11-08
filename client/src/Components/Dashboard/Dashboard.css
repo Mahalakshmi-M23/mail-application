@@ -2,3 +2,73 @@
     height: 15px;
     width: 15px;
 }
+
+.compLogCont {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.compose {
+
+}
+
+.logout {
+
+}
+
+.logoutSplit {
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+}
+
+.titleCont {
+    margin: 10px;
+    padding-top: 15px;
+}
+
+.mailsCont {
+    display: flex;
+    margin: 10px;
+}
+
+.mailsLeft {
+    flex: 1 1 15%;
+    border-right: solid 1px;
+}
+
+.mailsLeft > div {
+    padding: 10px;
+    
+}
+
+.mailCont {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 85%;
+    padding: 5px;
+}
+
+.singleMailCont {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mailBtn {
+    padding-left: 20px;
+    margin-right: 30px;
+    margin-right: calc(100% - 450px);
+}
+
+.mailBtn > a {
+    margin-left: 15px;
+}
+
+.noMail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 155px;
+}

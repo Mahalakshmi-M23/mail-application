@@ -20,9 +20,9 @@ let Login = (props) => {
     const { handleSubmit } = props;
 
     return (
-        <div>
-            <Row>
-                <Col>
+        <div className={'cont'}>
+            <Row >
+                <Col >
                     <h1>Login</h1>
                     <hr />
                     <Form onSubmit={handleSubmit(submit)}>
@@ -32,6 +32,7 @@ let Login = (props) => {
                             component={renderField}
                             placeholder={'janedoe@gmail.com'}
                             label={'Email'}
+                            className='field'
                         />
                         <Field
                             name="password"
@@ -39,8 +40,9 @@ let Login = (props) => {
                             component={renderField}
                             placeholder={'password'}
                             label={'Password'}
+                            className='field'
                         />
-                        <Button type='submit'>Login</Button>
+                        <Button className='loginBtn' type='submit'>Login</Button>
                     </Form>
                     <hr />
                 </Col>

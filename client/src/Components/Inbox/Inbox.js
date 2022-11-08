@@ -1,5 +1,5 @@
-import React, { useEffect} from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -21,48 +21,35 @@ let Inbox = (props) => {
     }, []);
 
     let mail = useSelector(state => state.mail.mailList.data);
-    // console.log(mail);
-
-
-    // userId = localStorage.getItem('userId');
-    // userEmail = localStorage.getItem('email');
-
 
     return (
-        <div>
-            <Container>
-                <div>
-                    <Row className='row-pos'>
-                        <div>
-                            <Col xs={1} sm={1} md={1} lg={0}>
-                                <Link to='/getMails' className='link-clr'>
-                                    <FontAwesomeIcon icon={faArrowLeft} />
-                                </Link>
-                            </Col>
-                            <Col>
-                                {mail && mail.subject}
-                            </Col>
+        <div className='mainCont'>
+            <div>
+                <Card border='primary' style={{ width: '80%' }}>
+                    <Card.Header>
+                        <div className='arrow'>
+                            <Link to='/getMails' className='link-clr'>
+                                <FontAwesomeIcon icon={faArrowLeft} size='xl' />
+                            </Link>
                         </div>
-                    </Row>
-                    <Row className='row-pos'>
-                        <div>
-                            <Col>
-                                <h2>To: </h2>
-                            </Col>
-                            <Col>
-                                {mail && mail.senderId}
-                            </Col>
-                        </div>
-                    </Row>
-                    <Row className='row-pos'>
-                        <div>
-                            <Col>
+                        <Card.Title as='h2'>{mail && mail.subject}</Card.Title>
+                    </Card.Header>
+                    <div className='mailCon'>
+                        <Card.Body>
+                            <div className='toSplit'>
+                                <Card.Subtitle as='h4'>
+                                    To: {mail && mail.senderId}
+                                </Card.Subtitle>
+
+                            </div>
+                            <Card.Text as='h5'>
                                 {mail && mail.message}
-                            </Col>
-                        </div>
-                    </Row>
-                </div>
-            </Container>
+                            </Card.Text>
+                        </Card.Body>
+                    </div>
+                </Card>
+
+            </div>
         </div>
     )
 

@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
 import validate from './validate';
 import { addMail } from '../../actions/mail';
+import './Compose.css';
 
-const renderField = ({ input, label, type, meta: { touched, error }, placeholder }) => {
+const renderField = ({ className, input, label, type, meta: { touched, error }, placeholder }) => {
     return (
-        <FormGroup>
+        <FormGroup className={className}>
             <FormLabel>{label}</FormLabel>
             <FormControl {...input} placeholder={placeholder} type={type} />
             {touched && error && <span className={'errorColor'} >{error}</span>}
@@ -51,18 +52,23 @@ let Compose = (props) => {
                     component={renderField}
                     placeholder={'abc@email.com'}
                     label={'To'}
+                    className={'fields'}
                 />
                 <Field
                     name="subject"
                     type='text'
                     component={renderField}
                     placeholder={'Subject'}
-                    label={''}
+                    label={'Subject'}
+                    className={'fields'}
                 />
+
+                <label className='labelC'>Message</label>
                 <Field
                     name="message"
                     component="textarea"
                     label={"message"}
+                    className={'textC'}
                 />
                 </Modal.Body>
                 <Modal.Footer>

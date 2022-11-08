@@ -20,7 +20,7 @@ let Signup = (props) => {
     const { handleSubmit } = props;
 
     return (
-        <div>
+        <div className='cont'>
                <Row>
                     <Col>
                         <h1>Signup</h1>
@@ -32,6 +32,7 @@ let Signup = (props) => {
                                 component={renderField}
                                 placeholder={'Jane'}
                                 label={'First Name'}
+                                className='field'
                             />
                             <Field
                                 name="lastName"
@@ -39,6 +40,7 @@ let Signup = (props) => {
                                 component={renderField}
                                 placeholder={'Doe'}
                                 label={'Last Name'}
+                                className='field'
                             />
                             <Field
                                 name="email"
@@ -46,6 +48,7 @@ let Signup = (props) => {
                                 component={renderField}
                                 placeholder={'johndoe@email.com'}
                                 label={'User Name or email'}
+                                className='field'
                             />
                             <Field
                                 name="mobileNumber"
@@ -53,6 +56,7 @@ let Signup = (props) => {
                                 component={renderField}
                                 placeholder={'+91'}
                                 label={'Mobile Number'}
+                                className='field'
                             />
                             <Field
                                 name="password"
@@ -60,6 +64,7 @@ let Signup = (props) => {
                                 component={renderField}
                                 placeholder={'password'}
                                 label={'Password'}
+                                className='field'
                             />
                             <Field
                                 name="confirmPassword"
@@ -67,9 +72,10 @@ let Signup = (props) => {
                                 component={renderField}
                                 placeholder={'password'}
                                 label={'Confirm Password'}
+                                className='field'
                             />
 
-                            <Button type='submit'>Signup</Button>
+                            <Button  className='signupBtn' type='submit'>Signup</Button>
                         </Form>
                         <hr />
                     </Col>

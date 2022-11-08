@@ -7,7 +7,7 @@ import {
 } from '../../actions/mail';
 import './Dashboard.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faStar, faStarOfDavid, faInbox, faPaperPlane, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faStar, faStarOfDavid, faInbox, faPaperPlane, faUser, faUserAlt, faUserAltSlash, faUserCheck, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import Compose from '../Compose/Compose';
 import { getUserData, userLogout } from '../../actions/user';
 
@@ -104,52 +104,70 @@ let Dashboard = (props) => {
     return (
         <div>
 
-            <div>
+            {show && <div>
                 <Compose show={show} handleClose={handleClose} history={history} />
+            </div>}
+            <div className='compLogCont'>
+                <div className='compose'>
+                    <Button type="submit" onClick={handleModal}>Compose</Button>
+                </div>
+                <div className='logout'>
+                    <Link to={'#'} className='link-clr' onClick={() => handleLogout()} >
+                        <Button>
+                            <div className='logoutSplit'>
+                                <div>
+                                    <FontAwesomeIcon icon={faUserCircle} size="2xl" />
+                                </div>
+                                <div>
+                                    <h5>Logout</h5>
+                                </div>
+                            </div>
+                        </Button>
+                    </Link>
+                </div>
             </div>
-            <Button type="submit" onClick={handleModal}>Compose</Button>
-            <div>
+
+            <div className='titleCont'>
                 <h3>{status}</h3>
-            </div>
-            <div>
                 {
-                    mailList && mailList.length === 0 &&
+                    mailList && mailList.length !== 0 && status === 'Trash' &&
                     <div>
-                        <h3>No Mails Here...</h3>
+                        <Button type='submit' onClick={handleDelete}>Delete All</Button>
                     </div>
                 }
             </div>
-            <div>
-                <div>
-                    <Link to='#' onClick={() => handleMenuStatus('Inbox')}><FontAwesomeIcon icon={faInbox} />Inbox</Link>
-                </div>
-                <div>
-                    <Link to='#' onClick={() => handleMenuStatus('Starred Mails')}><FontAwesomeIcon icon={faStar} />Starred</Link>
-                </div>
-                <div>
-                    <Link to='#' onClick={() => handleMenuStatus('Sent')}><FontAwesomeIcon icon={faPaperPlane} />Sent</Link>
-                </div>
-                <div>
-                    <Link to='#' onClick={() => handleMenuStatus('Trash')}><FontAwesomeIcon icon={faTrash} />Trash</Link>
-                </div>
-            </div>
 
-            <div>
-                {
-                    mailList && mailList.length !== 0 && status === 'Trash' &&
-                    <Button type='submit' onClick={handleDelete}>Delete All</Button>
-                }
-            </div>
+            <div className='mailsCont'>
+                <div className='mailsLeft'>
+                    <div>
+                        <Link to='#' onClick={() => handleMenuStatus('Inbox')}><FontAwesomeIcon icon={faInbox} />Inbox</Link>
+                    </div>
+                    <div>
+                        <Link to='#' onClick={() => handleMenuStatus('Starred Mails')}><FontAwesomeIcon icon={faStar} />Starred</Link>
+                    </div>
+                    <div>
+                        <Link to='#' onClick={() => handleMenuStatus('Sent')}><FontAwesomeIcon icon={faPaperPlane} />Sent</Link>
+                    </div>
+                    <div>
+                        <Link to='#' onClick={() => handleMenuStatus('Trash')}><FontAwesomeIcon icon={faTrash} />Trash</Link>
+                    </div>
+                </div>
 
-            {
-                mailList && mailList.length > 0 && mailList.map((mail) => {
+                <div className='mailCont'>
+                    {
+                        mailList && mailList.length > 0 && mailList.map((mail) => {
 
-                    return (
-                        mail.userId === userId &&
-                        <div key={mail && mail._id}>
-                            <Container>
-                                <Row className='row-pos'>
-                                    <Col xs={1} sm={1} md={1} lg={0}>
+                            return (
+                                mail.userId === userId &&
+                                <div className='singleMailCont' key={mail && mail._id}>
+                                    <div>
+                                        <Link to={'/mail/' + mail._id} className='link-clr' >
+                                            <p>{mail.subject}</p>
+                                        </Link>
+                                        <p>{mail.message}</p>
+                                    </div>
+
+                                    <div className='mailBtn'>
                                         <Link to={'#'} className='link-clr'>
                                             {
                                                 mail && mail._id && mail.starredStatus === true ?
@@ -158,53 +176,34 @@ let Dashboard = (props) => {
                                             }
                                         </Link>
 
-                                    </Col>
-                                    <Col>
-                                        <Col xs={12} sm={12} md={12} lg={12}>
-
-                                            <Link to={'/mail/' + mail._id} className='link-clr' >
-                                                <Col>{mail.subject}</Col>
-                                                <Col>{mail.message}</Col>
-                                            </Link>
-
-
-                                            <Col>
+                                        {
+                                            status !== 'Trash' &&
+                                            <Link to={'#'} className='link-clr'>
                                                 {
-                                                    status !== 'Trash' &&
-                                                    <Link to={'#'} className='link-clr'>
-                                                        {
-                                                            mail && mail._id && mail.deleteStatus === false &&
-                                                            <FontAwesomeIcon icon={faTrash} size="sm" onClick={() => handleStatusChange(mail._id, mail.starredStatus, true)} />
-                                                        }
-                                                    </Link>
+                                                    mail && mail._id && mail.deleteStatus === false &&
+                                                    <FontAwesomeIcon icon={faTrash} size="sm" onClick={() => handleStatusChange(mail._id, mail.starredStatus, true)} />
                                                 }
-                                            </Col>
-                                        </Col>
-                                    </Col>
+                                            </Link>
+                                        }
+                                    </div>
+                                </div>
 
-                                </ Row>
-                            </ Container>
+                            )
+                        })
+                    }
 
+                    {
+                        mailList && mailList.length === 0 &&
+
+                        <div className='noMail'>
+                            <h3>No Mails Here...</h3>
                         </div>
+                    }
+                </div>
 
-                    )
-                })
-            }
 
-            <div className='logout'>
-                <Link to={'#'} className='link-clr' onClick={() => handleLogout()} >
-                    <Row>
-                        <Col xs={0} sm={1} md={1} lg={0}>
-                            <FontAwesomeIcon icon={faUser} size="sm" />
-                        </Col>
-                        <Col xs={0} sm={1} md={1} lg={0}>
-                            <h4>Logout</h4>
-                        </Col>
-
-                    </Row>
-
-                </Link>
             </div>
+
         </div>
     )
 

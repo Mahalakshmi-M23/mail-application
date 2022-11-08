@@ -1,0 +1,23 @@
+.fields {
+    margin-bottom: 10px;
+}
+
+.fields > input {
+    width: 92% !important;
+    margin-left: 10px !important;
+}
+.fields > label {
+    margin-left: 5px !important;
+}
+
+.labelC {
+ display: block;
+ margin-bottom: 5px;
+ margin-left: 5px;
+}
+
+.textC {
+    margin-left: 10px;
+    width: 400px;
+    height: 100px;
+}

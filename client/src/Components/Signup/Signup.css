@@ -1,3 +1,27 @@
 .errorColor {
     color: red;
 }
+
+.cont {
+    min-width: 500px;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 40px;
+    height: 330px;
+}
+
+.field {
+    margin: 3px 0;
+}
+
+.field > input {
+    width: 92% !important;
+    margin-left: 10px !important;
+}
+.field > label {
+    margin-left: 5px !important;
+}
+
+.signupBtn {
+    margin-top: 15px!important
+}

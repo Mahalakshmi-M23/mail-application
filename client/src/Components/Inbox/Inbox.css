@@ -1,0 +1,29 @@
+
+
+.mainCont {
+    margin: 40px;
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: 0;
+    left: -30px;
+}
+
+.mailCon {
+
+}
+
+.toSplit {
+    display: flex;
+    margin: 10px 0px;
+}
+
+.toSplit > h2 {
+    margin-right: 15px;
+}
+
+.toSplit > p {
+    line-height: 38px;
+}
